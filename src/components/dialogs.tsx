@@ -10,34 +10,46 @@ import { Field, Modal, errorText, useApp } from './ui';
 
 // ---------------------------------------------------------------------------
 
-export function NewSiteDialog({ onClose, onCreated }: { onClose(): void; onCreated(p: Property): void }) {
-  const { backend } = useApp();
-  const [name, setName] = useState('');
-  const [code, setCode] = useState('');
-  const [address, setAddress] = useState('');
+/** Creates a site, or edits an existing one's details when `property` is given. */
+export function SiteDialog({ property, onClose, onSaved }: { property?: Property; onClose(): void; onSaved(p: Property): void }) {
+  const { backend, reloadProperties } = useApp();
+  const [name, setName] = useState(property?.name ?? '');
+  const [code, setCode] = useState(property?.code ?? '');
+  const [address, setAddress] = useState(property?.address ?? '');
+  const [notes, setNotes] = useState(property?.notes ?? '');
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState('');
   const save = async () => {
     if (!name.trim()) { setErr('Give the site a name.'); return; }
     setBusy(true);
     try {
-      const p: Property = { id: genId(), name: name.trim(), code: code.trim().toUpperCase(), address: address.trim() };
-      await backend.createProperty(p);
-      await backend.logActivity(p.id, 'Site created in the rack view.');
-      onCreated(p);
+      const fields = { name: name.trim(), code: code.trim().toUpperCase(), address: address.trim(), notes };
+      if (property) {
+        await backend.updateProperty(property.id, fields);
+        await backend.logActivity(property.id, 'Updated the site details.');
+        reloadProperties();
+        onSaved({ ...property, ...fields });
+      } else {
+        const p: Property = { id: genId(), ...fields };
+        await backend.createProperty(p);
+        await backend.logActivity(p.id, 'Site created.');
+        reloadProperties();
+        onSaved(p);
+      }
     } catch (e) { setErr(errorText(e)); setBusy(false); }
   };
   return (
-    <Modal title="New site" onClose={onClose} footer={<>
+    <Modal title={property ? 'Edit site' : 'New site'} onClose={onClose} footer={<>
       <button className="btn" onClick={onClose}>Cancel</button>
-      <button className="btn primary" onClick={save} disabled={busy}>Create site</button>
+      <button className="btn primary" onClick={save} disabled={busy}>{property ? 'Save' : 'Create site'}</button>
     </>}>
       <div className="stack">
         <Field label="Property name"><input autoFocus value={name} onChange={e => setName(e.target.value)} placeholder="Main Street Office" /></Field>
         <div className="row">
-          <Field label="Code"><input value={code} onChange={e => setCode(e.target.value)} placeholder="MSO" className="mono" /></Field>
+          <Field label="Code" hint="short id shown in the site picker"><input value={code} onChange={e => setCode(e.target.value)} placeholder="MSO" className="mono" /></Field>
         </div>
-        <Field label="Address"><input value={address} onChange={e => setAddress(e.target.value)} /></Field>
+        <Field label="Address"><input value={address} onChange={e => setAddress(e.target.value)} placeholder="123 Main St, Springfield" /></Field>
+        <Field label="Notes"><textarea value={notes} onChange={e => setNotes(e.target.value)} placeholder="Access instructions, ISP account numbers, contacts…" /></Field>
         {err && <div className="banner bad">{err}</div>}
       </div>
     </Modal>

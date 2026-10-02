@@ -174,6 +174,11 @@ export function createDemoBackend(variant: 'sample' | 'empty' = 'sample'): Backe
       sites.set(p.id, { property: clone(p), racks: [], devices: [], links: [], ports: [] });
       notify();
     },
+    async updateProperty(pid, patch) {
+      const s = site(pid);
+      s.property = { ...s.property, ...clone(patch) };
+      notify();
+    },
     async loadSite(pid) { return clone(site(pid)); },
     async devicePhoto(pid, deviceId) { return devicePhotos.get(`${pid}/${deviceId}`) ?? null; },
 
@@ -249,16 +254,21 @@ export function createDemoBackend(variant: 'sample' | 'empty' = 'sample'): Backe
     async importSite(bundle) {
       const pid = bundle.property.id;
       for (const d of bundle.devices) if (d.photoData) devicePhotos.set(`${pid}/${d.id}`, d.photoData);
+      const stored = new Map<string, string>();
       const ports = bundle.ports.map(({ photoData, ...p }) => {
         const added = (photoData ?? []).map(ph => {
-          const path = `demo:${genId()}`;
-          photos.set(path, ph.data);
+          let path = stored.get(ph.data);
+          if (!path) {
+            path = `demo:${genId()}`;
+            photos.set(path, ph.data);
+            stored.set(ph.data, path);
+          }
           return { path, name: ph.name, uploadedAt: nowIso() };
         });
         return { ...clone(p), photos: [...p.photos, ...added] };
       });
       sites.set(pid, {
-        property: { id: pid, name: bundle.property.name, code: bundle.property.code, address: bundle.property.address },
+        property: { id: pid, name: bundle.property.name, code: bundle.property.code, address: bundle.property.address, notes: bundle.property.notes },
         racks: clone(bundle.racks),
         devices: bundle.devices.map(({ tags: _t, credentials: _c, photoData: _p, ...d }) => clone(d)),
         links: clone(bundle.links),

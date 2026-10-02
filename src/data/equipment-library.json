@@ -467,5 +467,155 @@
     "faceColor": "#304b56",
     "portGroups": [],
     "notes": "Stand-in for rack gear whose ports aren't documented, or are all on the rear."
+  },
+  {
+    "id": "lantech-ge-24f46bw",
+    "manufacturer": "LANTech",
+    "name": "GE-24F46BW",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 9,
+    "faceColor": "#2f4a47",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G" },
+      { "id": "g2", "label": "Combo SFP", "kind": "sfp", "names": ["SFP 21", "SFP 22", "SFP 23", "SFP 24"], "speed": "1G" }
+    ],
+    "notes": "24-port gigabit switch; ports 21-24 are combo ports with SFP slots."
+  },
+  {
+    "id": "velocity-vband-6",
+    "manufacturer": "Velocity",
+    "name": "VBand (6-port)",
+    "category": "external",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 12,
+    "faceColor": "#e6e8eb",
+    "portGroups": [
+      { "id": "g1", "label": "ETH", "kind": "rj45", "count": 6, "start": 1, "speed": "1G" }
+    ],
+    "notes": "Smaller VBand bandwidth manager with ETH 1-6."
+  },
+  {
+    "id": "mikrotik-rb3011uias-rm",
+    "manufacturer": "MikroTik",
+    "name": "RB3011UiAS-RM",
+    "category": "router",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 8,
+    "faceColor": "#1c1d20",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 10, "start": 1, "blockSize": 5, "speed": "1G" },
+      { "id": "g2", "kind": "sfp", "names": ["SFP"], "speed": "1G" }
+    ],
+    "notes": "RouterBoard with 10 gigabit ports and an SFP cage. Port 1 accepts PoE in."
+  },
+  {
+    "id": "ubiquiti-edgeswitch-16",
+    "manufacturer": "Ubiquiti",
+    "name": "EdgeSwitch 16",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 10,
+    "faceColor": "#2a2d31",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 16, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 8, "speed": "1G" },
+      { "id": "g2", "kind": "sfp", "names": ["SFP 1", "SFP 2"], "rows": 2, "speed": "1G" }
+    ],
+    "notes": "16-port gigabit managed switch with 2 SFP ports."
+  },
+  {
+    "id": "cisco-catalyst-48-fe",
+    "manufacturer": "Cisco",
+    "name": "Catalyst 48-Port (FastEthernet)",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 12,
+    "faceColor": "#30363d",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 48, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "100M" },
+      { "id": "g2", "label": "Uplinks", "kind": "sfp", "names": ["G1", "G2"], "rows": 2, "speed": "1G" },
+      { "id": "g3", "label": "Stack", "kind": "rj45", "names": ["G3", "G4"], "speed": "1G" }
+    ],
+    "notes": "Generic Cisco Catalyst 48 x 10/100 access switch with gigabit uplinks."
+  },
+  {
+    "id": "tplink-tl-sg105",
+    "manufacturer": "TP-Link",
+    "name": "TL-SG105",
+    "category": "switch",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 3.9,
+    "depthIn": 3.9,
+    "faceColor": "#26324a",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 5, "start": 1, "speed": "1G" }
+    ],
+    "notes": "5-port gigabit desktop switch."
+  },
+  {
+    "id": "generic-switch-5-desktop",
+    "manufacturer": "Generic",
+    "name": "5-Port Desktop Switch",
+    "category": "switch",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 6,
+    "depthIn": 4,
+    "faceColor": "#3a3f45",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 5, "start": 1, "speed": "1G" }
+    ],
+    "notes": "Unmanaged 5-port desktop switch."
+  },
+  {
+    "id": "tplink-archer-ax4400",
+    "manufacturer": "TP-Link",
+    "name": "Archer AX4400",
+    "category": "router",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 10.2,
+    "depthIn": 6,
+    "faceColor": "#1e2024",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["WAN", "LAN 1", "LAN 2", "LAN 3", "LAN 4"], "speed": "1G" }
+    ],
+    "notes": "Wi-Fi 6 router. Ports are on the rear; drawn on the front here."
+  },
+  {
+    "id": "generic-wall-plate-2",
+    "manufacturer": "Generic",
+    "name": "Wall Plate (2 jacks)",
+    "category": "endpoint",
+    "formFactor": "offrack",
+    "rackUnits": 1,
+    "widthIn": 2.8,
+    "depthIn": 1,
+    "faceColor": "#eceae4",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["Data", "Voice"], "speed": "" }
+    ],
+    "notes": "Put the printed jack labels (e.g. D-101A) in each port's label."
+  },
+  {
+    "id": "generic-wall-plate-4",
+    "manufacturer": "Generic",
+    "name": "Wall Plate (4 jacks)",
+    "category": "endpoint",
+    "formFactor": "offrack",
+    "rackUnits": 1,
+    "widthIn": 2.8,
+    "depthIn": 1,
+    "faceColor": "#eceae4",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["Voice 1", "Data 1", "Voice 2", "Data 2"], "rows": 2, "order": "sequential", "speed": "" }
+    ],
+    "notes": "Put the printed jack labels in each port's label."
   }
 ]

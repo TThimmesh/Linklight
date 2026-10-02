@@ -6,6 +6,7 @@ export interface Backend {
   listProperties(): Promise<Property[]>;
   propertyExists(id: string): Promise<boolean>;
   createProperty(p: Property): Promise<void>;
+  updateProperty(id: string, patch: Partial<Omit<Property, 'id'>>): Promise<void>;
   loadSite(propertyId: string): Promise<SiteData>;
   /** URL (or data URL) of the device photo carried over from the original Patchwork. */
   devicePhoto(propertyId: string, deviceId: string): Promise<string | null>;

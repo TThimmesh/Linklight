@@ -5,12 +5,13 @@ import { useTheme } from '../lib/theme';
 import { useFullscreen } from '../lib/useFullscreen';
 import { DEVICE_TYPES, RACK_KINDS, modelLabel, type Device, type Rack } from '../lib/types';
 import { RackScene, type CameraApi, type Selection } from '../three/RackScene';
-import { AddDeviceDialog, RackDialog } from '../components/dialogs';
+import { AddDeviceDialog, RackDialog, SiteDialog } from '../components/dialogs';
 import { HoverCard } from '../components/HoverCard';
 import { Inspector } from '../components/Inspector';
 import { errorText, useApp } from '../components/ui';
 
 type Dialog =
+  | { type: 'site' }
   | { type: 'rack'; rack?: Rack }
   | { type: 'add'; u: number | null; existing?: Device };
 
@@ -71,10 +72,19 @@ export function SitePage({ propertyId, rackId, go }: { propertyId: string; rackI
   return (
     <div className="page">
       <aside className="sidebar">
-        <div className="panel-head">
+        <div className="panel-head site-head">
+          <button className="btn ghost sm site-edit" onClick={() => setDialog({ type: 'site' })} title="Edit name, code, address and notes">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M4 20h4L19 9l-4-4L4 16v4Z" /><path d="M13.5 6.5l4 4" />
+            </svg>
+            Edit
+          </button>
           {data.property.code && <div className="mono small" style={{ color: 'var(--accent)' }}>{data.property.code}</div>}
           <h2>{data.property.name}</h2>
-          {data.property.address && <div className="sub">{data.property.address}</div>}
+          {data.property.address
+            ? <div className="sub">{data.property.address}</div>
+            : <button className="add-address" onClick={() => setDialog({ type: 'site' })}>+ Add address</button>}
+          {data.property.notes && <div className="site-notes" title={data.property.notes}>{data.property.notes}</div>}
         </div>
         <div className="panel-scroll">
           <div className="section">
@@ -213,6 +223,13 @@ export function SitePage({ propertyId, rackId, go }: { propertyId: string; rackI
           />
         </div>
 
+        {dialog?.type === 'site' && (
+          <SiteDialog
+            property={data.property}
+            onClose={() => setDialog(null)}
+            onSaved={() => { setDialog(null); site.reload(); }}
+          />
+        )}
         {dialog?.type === 'rack' && (
           <RackDialog
             propertyId={propertyId}

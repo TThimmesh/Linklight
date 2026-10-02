@@ -56,6 +56,7 @@ export interface Property {
   name: string;
   code: string;
   address: string;
+  notes?: string;
 }
 
 export interface Rack {

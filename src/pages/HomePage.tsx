@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { Route } from '../lib/hooks';
 import type { Property } from '../lib/types';
-import { NewSiteDialog } from '../components/dialogs';
+import { SiteDialog } from '../components/dialogs';
 import { useApp } from '../components/ui';
 
 export function HomePage({ properties, go, onCreated }: { properties: Property[] | null; go(r: Route): void; onCreated(): void }) {
@@ -43,9 +43,9 @@ export function HomePage({ properties, go, onCreated }: { properties: Property[]
         )}
       </div>
       {adding && (
-        <NewSiteDialog
+        <SiteDialog
           onClose={() => setAdding(false)}
-          onCreated={p => { setAdding(false); onCreated(); go({ page: 'site', propertyId: p.id, rackId: null }); }}
+          onSaved={p => { setAdding(false); onCreated(); go({ page: 'site', propertyId: p.id, rackId: null }); }}
         />
       )}
     </div>

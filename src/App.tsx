@@ -42,8 +42,8 @@ export function App({ backend, userEmail, onSignOut }: { backend: Backend; userE
 
   const ctx: AppCtx = useMemo(() => {
     const list = models.data ?? [];
-    return { backend, models: list, modelsById: new Map(list.map(m => [m.id, m])), reloadModels: models.reload };
-  }, [backend, models.data, models.reload]);
+    return { backend, models: list, modelsById: new Map(list.map(m => [m.id, m])), reloadModels: models.reload, reloadProperties: loadProperties };
+  }, [backend, models.data, models.reload, loadProperties]);
 
   const error = propsError ?? models.error;
   let page;

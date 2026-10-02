@@ -13,6 +13,8 @@ export interface AppCtx {
   models: EquipmentModel[];
   modelsById: Map<string, EquipmentModel>;
   reloadModels(): void;
+  /** Refreshes the site list (top-bar picker and home page). */
+  reloadProperties(): void;
 }
 
 export const AppContext = createContext<AppCtx | null>(null);

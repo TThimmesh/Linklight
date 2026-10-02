@@ -428,7 +428,10 @@ function PortPanel({ site, idx, deviceId, portKey, onSelect }: InspectorProps & 
     if (!confirm('Remove this photo?')) return;
     try {
       await backend.savePort(portRecord({ photos: photos.filter(p => p.path !== path) }));
-      await backend.deletePhoto(path).catch(() => undefined);
+      // imported photos can be shared between ports — only delete the image once nothing uses it
+      const sharedElsewhere = site.ports.some(p =>
+        !(p.deviceId === deviceId && p.portKey === portKey) && p.photos.some(x => x.path === path));
+      if (!sharedElsewhere) await backend.deletePhoto(path).catch(() => undefined);
     } catch (e) { setErr(errorText(e)); }
   };
 

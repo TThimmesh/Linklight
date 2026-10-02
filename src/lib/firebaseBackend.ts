@@ -53,7 +53,7 @@ function portFrom(pid: string, x: Row): PortRecord {
   };
 }
 function propertyFrom(id: string, x: Row): Property {
-  return { id, name: str(x.name), code: str(x.code), address: str(x.address) };
+  return { id, name: str(x.name), code: str(x.code), address: str(x.address), notes: str(x.notes) };
 }
 
 /** Drops the key fields that live in the document path. */
@@ -137,9 +137,13 @@ export function createFirebaseBackend(options: FirebaseOptions): { backend: Back
 
     async createProperty(p) {
       await setDoc(P(p.id), {
-        name: p.name, code: p.code, address: p.address, owningLLC: '', preparedBy: '', notes: '', findings: [],
+        name: p.name, code: p.code, address: p.address, owningLLC: '', preparedBy: '', notes: p.notes ?? '', findings: [],
         createdAt: nowIso(), updatedAt: nowIso(),
       });
+    },
+
+    async updateProperty(id, patch) {
+      await updateDoc(P(id), { ...patch, updatedAt: nowIso() });
     },
 
     loadSite: readSite,
@@ -277,12 +281,18 @@ export function createFirebaseBackend(options: FirebaseOptions): { backend: Back
         const { photoData: _pd, ...rest } = d;
         devices.push({ ...rest, photoId });
       }
+      // the same photo can appear on several ports — store it once and share the reference
+      const stored = new Map<string, string>();
       const ports = [];
       for (const p of bundle.ports) {
         const photos = [...p.photos];
         for (const ph of p.photoData ?? []) {
-          onProgress?.(`${bundle.property.name}: photo ${++n} (${p.deviceId} port ${p.portKey})`);
-          const path = await storePhoto(pid, await (await fetch(ph.data)).blob(), { name: ph.name, deviceId: p.deviceId, portKey: p.portKey });
+          let path = stored.get(ph.data);
+          if (!path) {
+            onProgress?.(`${bundle.property.name}: photo ${++n} (${ph.name})`);
+            path = await storePhoto(pid, await (await fetch(ph.data)).blob(), { name: ph.name, deviceId: p.deviceId, portKey: p.portKey });
+            stored.set(ph.data, path);
+          }
           photos.push({ path, name: ph.name, uploadedAt: nowIso() });
         }
         ports.push({ ...p, photos });
