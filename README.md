@@ -108,9 +108,10 @@ link lights.
 - **Port groups:** RJ45, SFP or SFP+; numbered (with optional prefix, e.g. `X1–X4`) or named
   (`WAN, DMZ, eth0…`); 1 or 2 rows; odd-on-top or row-by-row numbering; ports per block; speed;
   which ports supply PoE and to what standard (af / at / bt); total PoE budget.
-- **Starter library** of about 24 common models: Ruckus ICX7150-48P, HP ProCurve 2510-24, Cisco
-  Catalyst 2950T-24, TP-Link switches and routers, Ubiquiti EdgeRouter X and UniFi AP, FortiGate,
-  JetKVM, generic patch panels, PoE switches, UPS units, DVRs and more.
+- **Starter library** of about 30 common models: Cisco Meraki MX64, MX250, MS120-8 and MS350-24,
+  Cisco Catalyst 2950T-24 and 2960-24PC, Ruckus ICX7150-48P, HP ProCurve 2510-24, Adtran Total
+  Access 924, TP-Link switches and routers, Ubiquiti EdgeRouter X and UniFi AP, FortiGate, JetKVM,
+  generic patch panels, PoE switches, UPS units, DVRs and more.
 
 ### Sites, closets and racks
 
@@ -235,6 +236,7 @@ no Firebase needed. Changes reset when you reload.
 | `npm run build` | Type-checks, then builds `dist/` |
 | `npm run preview` | Serves the built `dist/` locally |
 | `npm run deploy` | Builds, then deploys hosting and Firestore rules to Firebase |
+| `npm run site-file -- path/to/folder` | Builds an importable site file from a folder of notes and photos (see [Adding a site from a site file](#adding-a-site-from-a-site-file)) |
 | `npm run snapshot -- path/to/seed.sql` | Builds a local snapshot for previewing a Patchwork import (`?demo=migration`) |
 
 The `?demo` modes exist **only in development builds** and are removed from production builds.
@@ -336,14 +338,35 @@ connections when its model changes, as long as the port keys still exist.
 **Contributing models:** new entries in `src/data/equipment-library.json` are welcome. Use a stable
 `id` (e.g. `vendor-model`), and keep notes generic (no site names).
 
+## Adding a site from a site file
+
+Sites can be built in the app, but a site that's already documented elsewhere (in a PDF, a
+spreadsheet or a pile of photos) can be brought in all at once as a **site file**: one
+`.linklight.json` file holding the site's racks, equipment, cable runs, port labels and photos.
+
+1. Make a folder, e.g. `site-docs/main-street/` (`site-docs/` is gitignored, so real sites never
+   land in the repo). Put a `site.json` in it, following
+   [`docs/site-spec.example.json`](docs/site-spec.example.json), and the photos in `photos/`.
+   - **Devices** reference library models by `modelId`. Give a rack device a `rackId` and `rackU`;
+     leave them off for gear outside the rack.
+   - **Cables** go from `fromDevice`/`fromPort` to `toDevice`/`toPort`, or to a free-text
+     `toExternal`. Ports can be written the way they appear on site ("Port 3", "ETH 0/1",
+     "DSX-1 (T1 0/2)").
+   - **Photos** attach to a device (`photo`) or to individual ports (`ports[].photos`).
+2. Run `npm run site-file -- site-docs/main-street`. It checks every photo and model, then writes
+   `site-docs/main-street/<id>.linklight.json`.
+3. In the app, open **Sites → Import… → Site file**, choose the file, review the counts and click
+   **Import**. Missing equipment models are added to the library. Photos are shrunk as they're
+   stored. A site whose id already exists is never overwritten.
+
 ## Migrating from Patchwork
 
 Linklight is the successor to **Patchwork**, an earlier Supabase-based network documentation app.
 Teams moving over can use the built-in importer:
 
 1. In `public/config.js`, set `LINKLIGHT_SETTINGS.patchworkImport` to the Patchwork project's
-   Supabase URL and publishable key. This makes **Import from Patchwork** appear on the Sites page.
-2. Open **Import from Patchwork** and sign in with a Patchwork account. It's used only in the
+   Supabase URL and publishable key. This adds a **From Patchwork** section to **Sites → Import…**.
+2. Open **Sites → Import… → From Patchwork** and sign in with a Patchwork account. It's used only in the
    browser to read the data; it isn't stored, and the Patchwork database is never changed.
 3. Review the sites found, then click **Import**. Every site, device (with its photo and saved
    credentials, if you choose), cable run and activity entry is copied over. Sites that already

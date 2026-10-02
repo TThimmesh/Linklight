@@ -249,12 +249,20 @@ export function createDemoBackend(variant: 'sample' | 'empty' = 'sample'): Backe
     async importSite(bundle) {
       const pid = bundle.property.id;
       for (const d of bundle.devices) if (d.photoData) devicePhotos.set(`${pid}/${d.id}`, d.photoData);
+      const ports = bundle.ports.map(({ photoData, ...p }) => {
+        const added = (photoData ?? []).map(ph => {
+          const path = `demo:${genId()}`;
+          photos.set(path, ph.data);
+          return { path, name: ph.name, uploadedAt: nowIso() };
+        });
+        return { ...clone(p), photos: [...p.photos, ...added] };
+      });
       sites.set(pid, {
         property: { id: pid, name: bundle.property.name, code: bundle.property.code, address: bundle.property.address },
         racks: clone(bundle.racks),
         devices: bundle.devices.map(({ tags: _t, credentials: _c, photoData: _p, ...d }) => clone(d)),
         links: clone(bundle.links),
-        ports: clone(bundle.ports),
+        ports,
       });
       notify();
     },

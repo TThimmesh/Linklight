@@ -277,13 +277,23 @@ export function createFirebaseBackend(options: FirebaseOptions): { backend: Back
         const { photoData: _pd, ...rest } = d;
         devices.push({ ...rest, photoId });
       }
+      const ports = [];
+      for (const p of bundle.ports) {
+        const photos = [...p.photos];
+        for (const ph of p.photoData ?? []) {
+          onProgress?.(`${bundle.property.name}: photo ${++n} (${p.deviceId} port ${p.portKey})`);
+          const path = await storePhoto(pid, await (await fetch(ph.data)).blob(), { name: ph.name, deviceId: p.deviceId, portKey: p.portKey });
+          photos.push({ path, name: ph.name, uploadedAt: nowIso() });
+        }
+        ports.push({ ...p, photos });
+      }
       onProgress?.(`${bundle.property.name}: saving ${devices.length} devices, ${bundle.links.length} cable runs…`);
       await chunked([
         b => b.set(P(pid), prop),
         ...bundle.racks.map(r => (b: WriteBatch) => b.set(doc(sub(pid, 'racks'), r.id), body(r))),
         ...devices.map(d => (b: WriteBatch) => b.set(doc(sub(pid, 'devices'), d.id), body(d))),
         ...bundle.links.map(l => (b: WriteBatch) => b.set(doc(sub(pid, 'links'), l.id), body(l))),
-        ...bundle.ports.map(p => (b: WriteBatch) => b.set(doc(sub(pid, 'ports'), portDocId(p.deviceId, p.portKey)), {
+        ...ports.map(p => (b: WriteBatch) => b.set(doc(sub(pid, 'ports'), portDocId(p.deviceId, p.portKey)), {
           deviceId: p.deviceId, portKey: p.portKey, label: p.label, notes: p.notes, photos: p.photos, updatedAt: nowIso(),
         })),
         ...bundle.activity.map(a => (b: WriteBatch) => b.set(doc(sub(pid, 'activity'), a.id), { text: a.text, ts: a.ts })),

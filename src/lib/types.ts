@@ -154,10 +154,10 @@ export const STATUSES: { v: Status; label: string }[] = [
   { v: 'flagged', label: 'Flagged' },
 ];
 
-export const CABLE_COLORS = ['blue', 'purple', 'green', 'red', 'white', 'yellow', 'orange', 'black', 'gray'] as const;
+export const CABLE_COLORS = ['blue', 'purple', 'green', 'red', 'white', 'yellow', 'orange', 'pink', 'black', 'gray'] as const;
 export const CABLE_HEX: Record<string, string> = {
   blue: '#3B82F6', purple: '#A855F7', green: '#22C55E', red: '#EF4444', white: '#CBD5E1',
-  yellow: '#EAB308', orange: '#F97316', black: '#334155', gray: '#94A3B8',
+  yellow: '#EAB308', orange: '#F97316', pink: '#F472B6', black: '#334155', gray: '#94A3B8',
 };
 export const DEFAULT_CABLE_HEX = '#64748B';
 

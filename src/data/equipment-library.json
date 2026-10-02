@@ -344,5 +344,128 @@
       { "id": "g1", "kind": "rj45", "names": ["LAN"], "speed": "1G" }
     ],
     "notes": "Long-range Wi-Fi 5 access point. Powered by PoE."
+  },
+  {
+    "id": "cisco-catalyst-2960-24pc",
+    "manufacturer": "Cisco",
+    "name": "Catalyst 2960-24PC",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 9.5,
+    "faceColor": "#2c343d",
+    "poeBudgetW": 370,
+    "portGroups": [
+      { "id": "g1", "label": "10/100 PoE", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "100M", "poePorts": "all", "poeStandard": "af" },
+      { "id": "g2", "label": "Uplinks", "kind": "sfp", "names": ["Gi0/1", "Gi0/2"], "speed": "1G" }
+    ],
+    "notes": "24 x 10/100 PoE plus two dual-purpose gigabit uplinks (RJ45 or SFP)."
+  },
+  {
+    "id": "meraki-mx250",
+    "manufacturer": "Cisco Meraki",
+    "name": "MX250",
+    "category": "router",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 19,
+    "faceColor": "#d5d9dd",
+    "portGroups": [
+      { "id": "g1", "label": "Mgmt", "kind": "rj45", "names": ["MGMT"], "speed": "1G" },
+      { "id": "g2", "label": "Internet", "kind": "rj45", "count": 2, "start": 1, "rows": 2, "speed": "1G" },
+      { "id": "g3", "label": "GbE", "kind": "rj45", "count": 8, "start": 3, "rows": 2, "order": "odd-even", "speed": "1G" },
+      { "id": "g4", "label": "SFP", "kind": "sfp", "count": 8, "start": 11, "rows": 2, "order": "odd-even", "speed": "1G" },
+      { "id": "g5", "label": "SFP+", "kind": "sfp+", "count": 8, "start": 19, "rows": 2, "order": "odd-even", "speed": "10G" }
+    ],
+    "notes": "Meraki security appliance / SD-WAN gateway. Port numbering approximated from the front panel."
+  },
+  {
+    "id": "meraki-ms350-24",
+    "manufacturer": "Cisco Meraki",
+    "name": "MS350-24",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 14,
+    "faceColor": "#d9dcdf",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G" },
+      { "id": "g2", "label": "SFP+", "kind": "sfp+", "count": 4, "start": 25, "rows": 2, "speed": "10G" }
+    ],
+    "notes": "24-port gigabit stackable switch with 4 x 10G SFP+ uplinks."
+  },
+  {
+    "id": "meraki-mx64",
+    "manufacturer": "Cisco Meraki",
+    "name": "MX64",
+    "category": "router",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 9.5,
+    "depthIn": 5.5,
+    "faceColor": "#e3e5e8",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 5, "start": 1, "speed": "1G" }
+    ],
+    "notes": "Desktop security appliance: port 1 Internet, ports 2-5 LAN."
+  },
+  {
+    "id": "meraki-ms120-8",
+    "manufacturer": "Cisco Meraki",
+    "name": "MS120-8",
+    "category": "switch",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 9.9,
+    "depthIn": 7,
+    "faceColor": "#e3e5e8",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 8, "start": 1, "speed": "1G" },
+      { "id": "g2", "label": "SFP", "kind": "sfp", "count": 2, "start": 9, "speed": "1G" }
+    ],
+    "notes": "8-port desktop gigabit switch with 2 SFP uplinks."
+  },
+  {
+    "id": "adtran-ta924",
+    "manufacturer": "Adtran",
+    "name": "Total Access 924",
+    "category": "router",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 12,
+    "faceColor": "#dfe4ea",
+    "portGroups": [
+      { "id": "g1", "label": "Ethernet", "kind": "rj45", "names": ["ETH 0/1", "ETH 0/2"], "speed": "100M" },
+      { "id": "g2", "label": "T1", "kind": "rj45", "names": ["T1 0/1", "DSX-1"], "speed": "" }
+    ],
+    "notes": "Integrated access device (voice + data). Its ports are on the rear; drawn on the front here. DSX-1 is the T1 hand-off to a PBX."
+  },
+  {
+    "id": "cisco-poe-24-4sfp",
+    "manufacturer": "Cisco",
+    "name": "24-Port PoE+ Switch (4 SFP)",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 11,
+    "faceColor": "#d3d7db",
+    "poeBudgetW": 370,
+    "portGroups": [
+      { "id": "g1", "label": "PoE GbE", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G", "poePorts": "all", "poeStandard": "at" },
+      { "id": "g2", "label": "SFP", "kind": "sfp", "count": 4, "start": 25, "speed": "1G" }
+    ],
+    "notes": "Generic Cisco 24-port PoE+ access switch (e.g. Catalyst 1000 family)."
+  },
+  {
+    "id": "generic-appliance-1u",
+    "manufacturer": "Generic",
+    "name": "1U Appliance (rear ports)",
+    "category": "endpoint",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 14,
+    "faceColor": "#304b56",
+    "portGroups": [],
+    "notes": "Stand-in for rack gear whose ports aren't documented, or are all on the rear."
   }
 ]

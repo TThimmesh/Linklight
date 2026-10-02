@@ -16,3 +16,8 @@ firestore.rules
 # Local data that describes real sites (rack plans, snapshots of old data)
 *.local
 *.local.json
+
+# Source documentation for real sites (PDFs, photos, site files) — never commit.
+# Keep new site material in site-docs/.
+site-docs/
+*.linklight.json

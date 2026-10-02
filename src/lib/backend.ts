@@ -33,7 +33,7 @@ export interface Backend {
   photoUrl(path: string): Promise<string>;
   deletePhoto(path: string): Promise<void>;
 
-  /** Writes one whole property from the original Patchwork (see src/lib/importer.ts). */
+  /** Writes one whole property — from a site file (src/lib/siteFile.ts) or the Patchwork importer. */
   importSite(bundle: ImportBundle, onProgress?: (msg: string) => void): Promise<void>;
 
   logActivity(propertyId: string, text: string): Promise<void>;
@@ -54,7 +54,8 @@ export interface ImportBundle {
   racks: Rack[];
   devices: (Device & { tags: unknown[]; credentials: unknown[]; photoData: string | null })[];
   links: Link[];
-  ports: PortRecord[];
+  /** `photoData` holds new photos (data URLs) to store and attach to the port. */
+  ports: (PortRecord & { photoData?: { name: string; data: string }[] })[];
   activity: { id: string; text: string; ts: string }[];
 }
 

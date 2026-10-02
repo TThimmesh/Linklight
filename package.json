@@ -19,6 +19,7 @@
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "snapshot": "node scripts/snapshot-legacy.mjs",
+    "site-file": "node scripts/build-site-file.mjs",
     "deploy": "npm run build && firebase deploy"
   },
   "dependencies": {

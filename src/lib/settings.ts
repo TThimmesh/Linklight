@@ -12,7 +12,7 @@ export interface LinklightSettings {
   allowedEmailDomains?: string[];
   /** Line shown under the logo on the sign-in screen. */
   tagline?: string;
-  /** Turns on "Import from Patchwork" and pre-fills its connection details. */
+  /** Turns on the "From Patchwork" import and pre-fills its connection details. */
   patchworkImport?: { supabaseUrl: string; supabaseKey: string };
 }
 

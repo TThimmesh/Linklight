@@ -1,0 +1,31 @@
+{
+  "_about": "Example site.json for `npm run site-file -- <folder>`. Put this file in a folder with a photos/ subfolder, then run the command to produce <id>.linklight.json for the app's Import page. Keep real site folders out of the repo (site-docs/ is gitignored). Device modelIds come from the equipment library; custom models can be defined under \"models\". U1 is the bottom of a rack. Free-text ports like \"Port 3\" or \"DSX-1 (T1 0/2)\" are matched to real ports automatically.",
+  "property": {
+    "id": "example-office",
+    "name": "Example Office",
+    "code": "EXO",
+    "address": "",
+    "preparedBy": "Your Name",
+    "notes": ""
+  },
+  "models": [],
+  "racks": [
+    { "id": "mdf-1", "name": "MDF Rack", "location": "MDF", "kind": "floor", "units": 24, "notes": "" }
+  ],
+  "devices": [
+    { "id": "core", "name": "Core Switch", "type": "switch", "modelId": "ruckus-icx7150-48p", "rackId": "mdf-1", "rackU": 20, "notes": "", "photo": "core-front.jpg" },
+    { "id": "panel-a", "name": "Patch Panel A", "type": "patchpanel", "modelId": "generic-patch-24", "rackId": "mdf-1", "rackU": 22 },
+    { "id": "isp", "name": "ISP Modem", "type": "external", "notes": "Not in a rack — listed beside it." }
+  ],
+  "links": [
+    { "id": "l01", "fromDevice": "core", "fromPort": "1", "toDevice": "panel-a", "toPort": "1", "cableColor": "blue", "cableLabel": "RM-101" },
+    { "id": "l02", "fromDevice": "core", "fromPort": "48", "toDevice": "isp", "toPort": "LAN 1", "cableColor": "yellow" },
+    { "id": "l03", "fromDevice": "core", "fromPort": "47", "toExternal": "Cable into ceiling", "cableColor": "white", "status": "to-confirm" }
+  ],
+  "ports": [
+    { "deviceId": "panel-a", "portKey": "1", "label": "Room 101", "photos": ["panel-a-port1.jpg"] }
+  ],
+  "activity": [
+    { "text": "Documented on site." }
+  ]
+}

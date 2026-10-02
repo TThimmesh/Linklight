@@ -28,6 +28,6 @@ window.LINKLIGHT_SETTINGS = {
   // tagline: "Network documentation for Example Corp.",
 
   // Moving from the original Patchwork app? Fill this in to show
-  // "Import from Patchwork" (see README → Migrating from Patchwork).
+  // the "From Patchwork" import (see README → Migrating from Patchwork).
   // patchworkImport: { supabaseUrl: "https://xxxx.supabase.co", supabaseKey: "sb_publishable_..." },
 };
