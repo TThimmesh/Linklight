@@ -1,0 +1,23 @@
+{
+  "_about": "Example rack plan for the Patchwork importer. Copy to src/data/migration-plan.local.json (gitignored) and describe your own sites. Every section is optional. Device ids and property ids are the ids used in Patchwork; model ids come from the equipment library. U1 is the bottom of a rack. Only devices that exist and aren't already placed are touched.",
+  "racks": [
+    { "property": "example-site", "id": "example-mdf", "name": "MDF Rack", "location": "MDF", "kind": "floor", "units": 24, "sort": 0, "notes": "" }
+  ],
+  "newDevices": [
+    { "property": "example-site", "id": "mdf-patch-b", "name": "Patch Panel B", "type": "patchpanel", "group": "MDF", "notes": "Seen on site but missing from the old documentation." }
+  ],
+  "placements": [
+    { "property": "example-site", "device": "core-switch", "model": "ruckus-icx7150-48p", "rack": "example-mdf", "u": 22 },
+    { "property": "example-site", "device": "mdf-patch-b", "model": "generic-patch-24", "rack": "example-mdf", "u": 23 },
+    { "property": "example-site", "device": "lobby-ap", "model": "ubiquiti-uap-ac-lr" }
+  ],
+  "poeLinks": [
+    { "property": "example-site", "link": "link-ap-feed" }
+  ],
+  "linkFixes": [
+    { "property": "example-site", "link": "link-fw", "ifToPort": "WAN port", "toPort": "WAN", "cableLabel": "FW-WAN" }
+  ],
+  "portLabels": [
+    { "property": "example-site", "device": "mdf-patch-b", "port": "1", "label": "Room 101" }
+  ]
+}

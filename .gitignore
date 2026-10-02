@@ -1,0 +1,18 @@
+node_modules
+dist
+.DS_Store
+
+# Firebase CLI
+.firebase
+firebase-debug.log
+firestore-debug.log
+
+# Per-deployment files — each installation keeps its own copy.
+# Templates are committed alongside: *.example
+public/config.js
+firestore.rules
+.firebaserc
+
+# Local data that describes real sites (rack plans, snapshots of old data)
+*.local
+*.local.json

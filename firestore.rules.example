@@ -1,0 +1,26 @@
+rules_version = '2';
+
+// Linklight — Firestore security rules (template).
+//
+// Copy this file to firestore.rules (gitignored) and set your domain below,
+// then deploy with `npm run deploy`.
+//
+// Access model: everyone who can sign in can read and edit everything. Keep
+// "Enable create (sign-up)" turned OFF in Firebase Authentication so only
+// accounts you add can sign in; the email-domain check is a second lock.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isTeam() {
+      return request.auth != null
+        && request.auth.token.email is string
+        // Change example[.]com to your domain (dots written as [.]).
+        // To allow any account you've created regardless of domain, delete this line.
+        && request.auth.token.email.lower().matches('.*@example[.]com$');
+    }
+
+    match /{document=**} {
+      allow read, write: if isTeam();
+    }
+  }
+}

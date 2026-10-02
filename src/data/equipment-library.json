@@ -1,0 +1,348 @@
+[
+  {
+    "id": "ruckus-icx7150-48p",
+    "manufacturer": "Ruckus",
+    "name": "ICX7150-48P",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 12,
+    "faceColor": "#2b3037",
+    "poeBudgetW": 370,
+    "portGroups": [
+      { "id": "g1", "label": "1G PoE+", "kind": "rj45", "count": 48, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G", "poePorts": "1-48", "poeStandard": "at" },
+      { "id": "g2", "label": "Uplink", "kind": "rj45", "names": ["C1", "C2"], "rows": 2, "speed": "1G" },
+      { "id": "g3", "label": "10G SFP+", "kind": "sfp+", "names": ["X1", "X2", "X3", "X4"], "rows": 2, "speed": "10G" }
+    ],
+    "notes": "48 x 1G PoE+ (370 W), 2 x 1G uplinks, 4 x 10G SFP+."
+  },
+  {
+    "id": "tplink-48-gigabit",
+    "manufacturer": "TP-Link",
+    "name": "48-Port Gigabit Switch",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 8,
+    "faceColor": "#24282d",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 48, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G" }
+    ],
+    "notes": "Unmanaged 48-port gigabit rack switch."
+  },
+  {
+    "id": "tplink-tl-sg705",
+    "manufacturer": "TP-Link",
+    "name": "TL-SG705",
+    "category": "switch",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 6.2,
+    "depthIn": 4,
+    "faceColor": "#4a5663",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 5, "start": 1, "speed": "1G" }
+    ],
+    "notes": "5-port gigabit desktop switch."
+  },
+  {
+    "id": "hp-procurve-2510-24",
+    "manufacturer": "HP ProCurve",
+    "name": "2510-24 (J9019B)",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 8,
+    "faceColor": "#bfc3c7",
+    "portGroups": [
+      { "id": "g1", "label": "10/100", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "100M" },
+      { "id": "g2", "label": "Gigabit", "kind": "rj45", "count": 2, "start": 25, "rows": 2, "speed": "1G" }
+    ],
+    "notes": "Ports 25-26 are dual-personality (RJ45 or SFP)."
+  },
+  {
+    "id": "cisco-catalyst-2950-24",
+    "manufacturer": "Cisco",
+    "name": "Catalyst 2950T-24",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 9.5,
+    "faceColor": "#8e9aa6",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 8, "speed": "100M" },
+      { "id": "g2", "label": "Gigabit uplinks", "kind": "rj45", "names": ["Gi0/1", "Gi0/2"], "speed": "1G" }
+    ],
+    "notes": "24 x 10/100 plus two 10/100/1000 uplinks (Gi0/1-2)."
+  },
+  {
+    "id": "generic-poe-8-desktop",
+    "manufacturer": "Generic",
+    "name": "8-Port PoE Switch",
+    "category": "switch",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 9,
+    "depthIn": 5,
+    "faceColor": "#23272c",
+    "poeBudgetW": 65,
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 8, "start": 1, "speed": "1G", "poePorts": "1-8", "poeStandard": "at" }
+    ],
+    "notes": "Generic small PoE switch, e.g. for access points."
+  },
+  {
+    "id": "generic-poe-24-rack",
+    "manufacturer": "Generic",
+    "name": "24-Port PoE+ Switch",
+    "category": "switch",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 10,
+    "faceColor": "#262b31",
+    "poeBudgetW": 250,
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 24, "start": 1, "rows": 2, "order": "odd-even", "blockSize": 12, "speed": "1G", "poePorts": "1-24", "poeStandard": "at" },
+      { "id": "g2", "label": "SFP", "kind": "sfp", "count": 2, "start": 25, "rows": 2, "speed": "1G" }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "fortinet-fortigate-desktop",
+    "manufacturer": "Fortinet",
+    "name": "FortiGate (desktop)",
+    "category": "security",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 8.5,
+    "depthIn": 6,
+    "faceColor": "#d6d9dc",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["WAN", "1", "2", "3", "4"], "speed": "1G" }
+    ],
+    "notes": "Generic desktop FortiGate layout; adjust ports to match your model."
+  },
+  {
+    "id": "summit360-gateway",
+    "manufacturer": "Summit360",
+    "name": "Gateway",
+    "category": "security",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 14,
+    "faceColor": "#c9cdd2",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["WAN1", "WAN2", "LAN"], "speed": "1G" }
+    ],
+    "notes": "Hospitality gateway."
+  },
+  {
+    "id": "velocity-vband",
+    "manufacturer": "Velocity",
+    "name": "VBand",
+    "category": "external",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 12,
+    "faceColor": "#e6e8eb",
+    "portGroups": [
+      { "id": "g1", "label": "ETH", "kind": "rj45", "count": 13, "start": 1, "speed": "1G" }
+    ],
+    "notes": "WAN aggregation / bonding appliance (white chassis, ETH 1-13 + console)."
+  },
+  {
+    "id": "tplink-router-desktop",
+    "manufacturer": "TP-Link",
+    "name": "Router (5-port)",
+    "category": "router",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 8,
+    "depthIn": 5,
+    "faceColor": "#202429",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["WAN", "2", "3", "4", "5"], "speed": "1G" }
+    ],
+    "notes": "Generic 5-port desktop router (WAN + 4)."
+  },
+  {
+    "id": "adtran-router",
+    "manufacturer": "Adtran",
+    "name": "ISP Router",
+    "category": "router",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 9,
+    "depthIn": 6,
+    "faceColor": "#2a2e33",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["WAN", "LAN 1", "LAN 2", "LAN 3", "LAN 4"], "speed": "1G" }
+    ],
+    "notes": "Generic ISP-provided router."
+  },
+  {
+    "id": "ubiquiti-edgerouter-x",
+    "manufacturer": "Ubiquiti",
+    "name": "EdgeRouter X",
+    "category": "router",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 4.3,
+    "depthIn": 3.6,
+    "faceColor": "#1c1f23",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["eth0", "eth1", "eth2", "eth3", "eth4"], "speed": "1G" }
+    ],
+    "notes": "5-port gigabit router."
+  },
+  {
+    "id": "generic-modem-ont",
+    "manufacturer": "Generic",
+    "name": "Modem / ONT",
+    "category": "external",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 6.5,
+    "depthIn": 5,
+    "faceColor": "#e4e6e8",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["LAN 1", "LAN 2", "LAN 3", "LAN 4"], "speed": "1G" }
+    ],
+    "notes": "Stand-in for ISP hand-off boxes (cable modems, ONTs)."
+  },
+  {
+    "id": "generic-patch-24",
+    "manufacturer": "Generic",
+    "name": "24-Port Cat6 Patch Panel",
+    "category": "patchpanel",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 3,
+    "faceColor": "#1a1d21",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 24, "start": 1, "blockSize": 6, "speed": "" }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "generic-patch-48",
+    "manufacturer": "Generic",
+    "name": "48-Port Cat6 Patch Panel",
+    "category": "patchpanel",
+    "formFactor": "rack",
+    "rackUnits": 2,
+    "depthIn": 3,
+    "faceColor": "#1a1d21",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "count": 48, "start": 1, "rows": 2, "order": "sequential", "blockSize": 12, "speed": "" }
+    ],
+    "notes": "2U, two rows of 24."
+  },
+  {
+    "id": "generic-dvr",
+    "manufacturer": "Generic",
+    "name": "DVR / NVR",
+    "category": "av",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 14,
+    "depthIn": 11,
+    "faceColor": "#17191c",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["LAN"], "speed": "1G" }
+    ],
+    "notes": "Network port is on the rear of most DVRs; drawn on the front here."
+  },
+  {
+    "id": "generic-pbx",
+    "manufacturer": "Generic",
+    "name": "PBX",
+    "category": "av",
+    "formFactor": "rack",
+    "rackUnits": 2,
+    "depthIn": 12,
+    "faceColor": "#2e3238",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["LAN"], "speed": "1G" }
+    ],
+    "notes": ""
+  },
+  {
+    "id": "jetkvm",
+    "manufacturer": "JetKVM",
+    "name": "JetKVM",
+    "category": "av",
+    "formFactor": "desktop",
+    "rackUnits": 1,
+    "widthIn": 2.6,
+    "depthIn": 3,
+    "faceColor": "#121417",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["LAN"], "speed": "1G" }
+    ],
+    "notes": "Compact IP KVM."
+  },
+  {
+    "id": "generic-ups-2u",
+    "manufacturer": "Generic",
+    "name": "UPS (2U)",
+    "category": "power",
+    "formFactor": "rack",
+    "rackUnits": 2,
+    "depthIn": 18,
+    "faceColor": "#1b1d20",
+    "portGroups": [],
+    "notes": "Generic 2U rack UPS."
+  },
+  {
+    "id": "generic-ups-1u",
+    "manufacturer": "Generic",
+    "name": "UPS (1U)",
+    "category": "power",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 14,
+    "faceColor": "#202327",
+    "portGroups": [],
+    "notes": "Generic 1U rack UPS."
+  },
+  {
+    "id": "crown-power-tech-2",
+    "manufacturer": "Crown",
+    "name": "Power-Tech 2",
+    "category": "power",
+    "formFactor": "rack",
+    "rackUnits": 2,
+    "depthIn": 16,
+    "faceColor": "#17181a",
+    "portGroups": [],
+    "notes": "2U rack unit, no network ports."
+  },
+  {
+    "id": "generic-power-conditioner",
+    "manufacturer": "Generic",
+    "name": "Power Conditioner (1U)",
+    "category": "power",
+    "formFactor": "rack",
+    "rackUnits": 1,
+    "depthIn": 9,
+    "faceColor": "#202226",
+    "portGroups": [],
+    "notes": ""
+  },
+  {
+    "id": "ubiquiti-uap-ac-lr",
+    "manufacturer": "Ubiquiti",
+    "name": "UniFi UAP-AC-LR",
+    "category": "ap",
+    "formFactor": "offrack",
+    "rackUnits": 1,
+    "widthIn": 7.5,
+    "depthIn": 7.5,
+    "faceColor": "#f2f3f4",
+    "portGroups": [
+      { "id": "g1", "kind": "rj45", "names": ["LAN"], "speed": "1G" }
+    ],
+    "notes": "Long-range Wi-Fi 5 access point. Powered by PoE."
+  }
+]
